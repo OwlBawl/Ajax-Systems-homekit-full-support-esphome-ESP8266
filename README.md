@@ -10,5 +10,4 @@ https://community.home-assistant.io/t/ajax-alarm-system/62853/99
 Board used - Wemos D1 mini
 
 Here is the code for ESPHOME (esphome.io)
-https://github.com/akarpenkoua/ajax-spacecontrol-esphome/blob/master/esphome_config
-
+https://github.com/OwlBawl/ajax-spacecontrol-esphome-ESP8266/blob/master/ajax-systems.yaml
