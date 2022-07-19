@@ -9,7 +9,7 @@ Here is the code for ESPHOME (esphome.io)
 https://github.com/OwlBawl/ajax-spacecontrol-esphome-ESP8266/blob/master/ajax-systems.yaml
 
 Soldering instructions used from **Iesus** project.
-He used the v8 plate, i had the older one v6 - it was the same in scematics
+He used the v8 plate, i had the older one v6 - it was the same in schematics.
 Link to project with photos:
 https://bitbucket.org/iesus_sonesson/d1-ajax-mqtt/src/master/
 
