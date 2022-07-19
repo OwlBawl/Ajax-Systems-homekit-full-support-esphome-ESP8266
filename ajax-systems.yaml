@@ -1,44 +1,94 @@
-- id: 'sia_to_alarm'
-  alias: Setting up alarm status if SIA has changed
-  description: SIA to Alarm sync
-  trigger:
-    platform: state
-    entity_id: alarm_control_panel.parkova44_1_alarm_2
-  condition:
-    - condition: template
-      value_template: "{{ states('alarm_control_panel.parkova44_1_alarm_2') != states('alarm_control_panel.house')  }}"
-  action:
-    service_template: >
-          {% if is_state('alarm_control_panel.parkova44_1_alarm_2', 'disarmed') %}
-            alarm_control_panel.alarm_disarm
-          {% elif is_state('alarm_control_panel.parkova44_1_alarm_2', 'armed_night') %}
-            alarm_control_panel.alarm_arm_night
-          {% elif is_state('alarm_control_panel.parkova44_1_alarm_2', 'armed_away') %}
-            alarm_control_panel.alarm_arm_away
-          {% else %}
-          {% endif %}
-    entity_id: alarm_control_panel.house
-    data:
-        code: !secret artem_alarm_code
-# way to manage Ajax
-- id: 'alarm_to_ajax'
-  alias: Setting up Ajax status if House alarm has changed
-  description: Alarm to Ajax sync
-  trigger:
-    platform: state
-    entity_id: alarm_control_panel.house
-  condition:
-    - condition: template
-      value_template: "{{ states('alarm_control_panel.parkova44_1_alarm_2') != states('alarm_control_panel.house')  }}"
-  action:
-    service: switch.turn_on
-    data_template:
-        entity_id: >
-          {% if is_state('alarm_control_panel.house', 'disarmed') %}
-            switch.ajax_disarm
-          {% elif is_state('alarm_control_panel.house', 'armed_night') %}
-            switch.ajax_night
-          {% elif is_state('alarm_control_panel.house', 'armed_away') %}
-            switch.ajax_arm
-          {% else %}
-          {% endif %}
+# The only change needed to do from original code
+# was to inverd gpios state
+# inverted: True
+
+esphome:
+  name: ajax-alarm
+
+esp8266:
+  board: d1_mini
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: #use yours
+
+ota:
+  password: #use yours
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  
+# Optional manual IP
+  manual_ip:
+    static_ip: #use yours
+    gateway: #use yours
+    subnet: #use yours
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: #use yours
+    password: #use yours
+
+captive_portal:
+  
+# Sensors section
+# Wifi and Firmware info
+text_sensor:
+  - platform: wifi_info
+    ip_address:
+      name: IP Ajax control
+    ssid:
+      name: Ajax control connected SSID
+  - platform: version
+    name: "Firmware Ajax control"
+
+# Wifi signal
+sensor:
+  - platform: wifi_signal
+    name: "WiFi Signal Ajax control"
+    update_interval: 60s
+
+#Switch lines
+# GPIOS were found experimental way. We need those who do not fire on boot!
+switch: 
+# button 1 
+  - platform: gpio 
+    pin: D2 
+    inverted: True
+    id: relay_disarm 
+  - platform: template 
+    name: "Ajax disarm" 
+    icon: "mdi:shield-off" 
+    turn_on_action: 
+    - switch.turn_on: relay_disarm 
+    - delay: 500ms 
+    - switch.turn_off: relay_disarm 
+# button 2     
+  - platform: gpio 
+    pin: D1 
+    inverted: True
+    id: relay_arm 
+  - platform: template 
+    name: "Ajax arm" 
+    icon: "mdi:shield-key" 
+    turn_on_action: 
+    - switch.turn_on: relay_arm 
+    - delay: 500ms 
+    - switch.turn_off: relay_arm    
+# button 3     
+  - platform: gpio 
+    pin: D7 
+    inverted: True
+    id: relay_night 
+  - platform: template 
+    name: "Ajax night" 
+    icon: "mdi:shield-half-full" 
+    turn_on_action: 
+    - switch.turn_on: relay_night 
+    - delay: 500ms
+    - switch.turn_off: relay_night   
