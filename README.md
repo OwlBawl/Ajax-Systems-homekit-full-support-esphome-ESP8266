@@ -20,6 +20,7 @@ We would need to install:
 4. Use my Nodered_Ajax_alarm.flow as draft (it saves Alarm State on reboot and elimenates Alarm SecuritySystem loop)  
 
 My soldering images are in folder /soldering  
+Using that schematics allows not to use the cell battery later and power up the SpaceControl vith 3,3V from the board powered by usb adapter.  
 Soldering instructions used from **iesus** project.  
 He used the v8 plate, i had the older one v6 - it is the same in schematics.  
 Link to project with photos:  
