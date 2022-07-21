@@ -12,7 +12,7 @@ Made two variations for ESPhome: HA & mqtt, you can chose preffered.
 MQTT broker topic to subscibe for control: ajax/alarm  
 Payloads: arm_ajax, disarm_ajax, night_ajax (you can change for yours especially if you have zones)  
 
-**For me I've stoped on Node-Red implementation.  **
+For me I've stoped on Node-Red implementation.  
 We would need to install:  
 1. node-red-contrib-sia-ultimate (+ configure in Ajax app hub settings SIA monitoring station)  
 2. node-red-contrib-homekit-bridged (Alarm node in my flow already preconfigured withot extra "Home" state unsupported by Ajax)  
