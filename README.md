@@ -21,7 +21,7 @@ https://bitbucket.org/iesus_sonesson/d1-ajax-mqtt/src/master/
 As i studied in process - for Wemos D1 mini it's safe to use for soldering: D1,D2,D5,D6,D7  
 (they are not triggered at boot and can be input / otput). 
 
-HA version based on the work of **akarpenkoua** with tiny changes (inverted state nedded for correct work).  
+HA version based on the work of **akarpenkoua** with tiny changes (inverted state needed for correct work).  
 https://github.com/akarpenkoua/ajax-spacecontrol-esphome  
 
 MQTT version based on jb567 project with small changes and correction.  
