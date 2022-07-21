@@ -12,6 +12,13 @@ Made two variations for ESPhome: HA & mqtt, you can chose preffered.
 MQTT broker topic to subscibe for control: ajax/alarm  
 Payloads: arm_ajax, disarm_ajax, night_ajax (you can change for yours especially if you have zones)  
 
+**For me I've stoped on Node-Red implementation.  **
+We would need to install:  
+1. node-red-contrib-sia-ultimate (+ configure in Ajax app hub settings SIA monitoring station)  
+2. node-red-contrib-homekit-bridged (Alarm node in my flow already preconfigured withot extra "Home" state unsupported by Ajax)  
+3. Solder SpaceControl + use ESPhome mqtt.yaml example  
+4. Use my Nodered_Ajax_alarm.flow as draft (it saves Alarm State on reboot and elimenates Alarm SecuritySystem loop)  
+
 My soldering images are in folder /soldering  
 Soldering instructions used from **iesus** project.  
 He used the v8 plate, i had the older one v6 - it is the same in schematics.  
