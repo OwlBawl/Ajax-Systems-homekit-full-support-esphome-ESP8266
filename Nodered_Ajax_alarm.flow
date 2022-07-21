@@ -1,0 +1,387 @@
+[
+    {
+        "id": "1148c24415264e0a",
+        "type": "tab",
+        "label": "AJAX",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f39ff1c1d9fe6ba1",
+        "type": "SIAUltimate",
+        "z": "1148c24415264e0a",
+        "name": "Ajax Alarm",
+        "topic": "",
+        "server": "60509c0e3ee89cbe",
+        "discardAutomaticTest": "no",
+        "x": 80,
+        "y": 160,
+        "wires": [
+            [
+                "98d6f6282b438f57",
+                "8241edb9eb29cce4"
+            ],
+            [
+                "d7b1ccf85024417f"
+            ]
+        ]
+    },
+    {
+        "id": "d7b1ccf85024417f",
+        "type": "debug",
+        "z": "1148c24415264e0a",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 290,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "867dd54f08c530e2",
+        "type": "homekit-service",
+        "z": "1148c24415264e0a",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "827a712d17d50aa0",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Ajax Alarm",
+        "serviceName": "SecuritySystem",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "1.4.3",
+        "serialNo": "Default Serial Number",
+        "firmwareRev": "1.4.3",
+        "hardwareRev": "1.4.3",
+        "softwareRev": "1.4.3",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{\"SecuritySystemCurrentState\":{\"validValues\":[1,2,3,4]},\"SecuritySystemTargetState\":{\"validValues\":[1,2,3,4]}}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 670,
+        "y": 160,
+        "wires": [
+            [
+                "06bcb4cea2783274"
+            ],
+            [
+                "d57af3bb8d7824bd",
+                "ae575bdb0b9ea64e"
+            ]
+        ]
+    },
+    {
+        "id": "98d6f6282b438f57",
+        "type": "debug",
+        "z": "1148c24415264e0a",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 270,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "4b6aba4216f9e1aa",
+        "type": "debug",
+        "z": "1148c24415264e0a",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 270,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "8241edb9eb29cce4",
+        "type": "function",
+        "z": "1148c24415264e0a",
+        "name": "Alarm State",
+        "func": "// Armed\nif (msg.payload.code == \"CL\") return { payload: { \"SecuritySystemCurrentState\": 1, \"SecuritySystemTargetState\": 1 } };\n// Armed sheduled\nif (msg.payload.code == \"CA\") return { payload: { \"SecuritySystemCurrentState\": 1, \"SecuritySystemTargetState\": 1 } };\n// Night mode\nif (msg.payload.code == \"NL\") return { payload: { \"SecuritySystemCurrentState\": 2, \"SecuritySystemTargetState\": 2 } };\n// Night sheduled\nif (msg.payload.code == \"NC\") return { payload: { \"SecuritySystemCurrentState\": 2, \"SecuritySystemTargetState\": 2 } };\n// Disarmed\nif (msg.payload.code == \"OP\") return { payload: { \"SecuritySystemCurrentState\": 3, \"SecuritySystemTargetState\": 3 } };\n// Disarmed sheduled\nif (msg.payload.code == \"OA\") return { payload: { \"SecuritySystemCurrentState\": 3, \"SecuritySystemTargetState\": 3 } };\n// Disarmed Night sheduled\nif (msg.payload.code == \"NO\") return { payload: { \"SecuritySystemCurrentState\": 3, \"SecuritySystemTargetState\": 3 } };\nreturn null;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// @ts-nocheck\n// Code added here will be run once\n// whenever the node is started.",
+        "finalize": "",
+        "libs": [],
+        "x": 270,
+        "y": 160,
+        "wires": [
+            [
+                "4b6aba4216f9e1aa",
+                "ad1237be4d4327dc"
+            ]
+        ]
+    },
+    {
+        "id": "ad1237be4d4327dc",
+        "type": "change",
+        "z": "1148c24415264e0a",
+        "name": "Save state",
+        "rules": [
+            {
+                "t": "set",
+                "p": "AlarmState",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 470,
+        "y": 160,
+        "wires": [
+            [
+                "867dd54f08c530e2",
+                "6f5138b63a327964"
+            ]
+        ]
+    },
+    {
+        "id": "344ee22f1992c471",
+        "type": "inject",
+        "z": "1148c24415264e0a",
+        "name": "Inject state on start",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "AlarmState",
+        "payloadType": "global",
+        "x": 470,
+        "y": 220,
+        "wires": [
+            [
+                "867dd54f08c530e2",
+                "d1522c13aef0cf3e"
+            ]
+        ]
+    },
+    {
+        "id": "d1522c13aef0cf3e",
+        "type": "debug",
+        "z": "1148c24415264e0a",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "6f5138b63a327964",
+        "type": "debug",
+        "z": "1148c24415264e0a",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "d57af3bb8d7824bd",
+        "type": "debug",
+        "z": "1148c24415264e0a",
+        "name": "debug 4",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "e21a576d140c1fde",
+        "type": "mqtt out",
+        "z": "1148c24415264e0a",
+        "name": "Ajax control",
+        "topic": "ajax/alarm",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "1654f513c098f4c0",
+        "x": 1030,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "c421a485a34066d7",
+        "type": "debug",
+        "z": "1148c24415264e0a",
+        "name": "debug 5",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "ae575bdb0b9ea64e",
+        "type": "function",
+        "z": "1148c24415264e0a",
+        "name": "Alarm State",
+        "func": "// filter events which did not originate from HomeKit\nif (msg.hap.session === undefined || msg.payload.SecuritySystemTargetState === undefined) { return null; }\n\n// if originate from HomeKit\nif (msg.payload.SecuritySystemTargetState == 1 ) return { payload: \"arm_ajax\" };\nif (msg.payload.SecuritySystemTargetState == 2 ) return { payload: \"night_ajax\" };\nif (msg.payload.SecuritySystemTargetState == 3) return { payload: \"disarm_ajax\" };\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// @ts-nocheck\n// Code added here will be run once\n// whenever the node is started.",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 160,
+        "wires": [
+            [
+                "c421a485a34066d7",
+                "e21a576d140c1fde"
+            ]
+        ]
+    },
+    {
+        "id": "06bcb4cea2783274",
+        "type": "debug",
+        "z": "1148c24415264e0a",
+        "name": "debug 6",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "60509c0e3ee89cbe",
+        "type": "siaendpoint-config",
+        "port": "8234",
+        "name": "NR-SIA",
+        "acktimeout": "",
+        "hex": "no",
+        "aes": "no",
+        "heartbeatTimeout": "120",
+        "deviceList": ""
+    },
+    {
+        "id": "827a712d17d50aa0",
+        "type": "homekit-bridge",
+        "bridgeName": "Node-Red",
+        "pinCode": "111-00-111",
+        "port": "",
+        "advertiser": "bonjour-hap",
+        "allowInsecureRequest": false,
+        "manufacturer": "NRCHKB",
+        "model": "1.4.3",
+        "serialNo": "Default Serial Number",
+        "firmwareRev": "1.4.3",
+        "hardwareRev": "1.4.3",
+        "softwareRev": "1.4.3",
+        "customMdnsConfig": false,
+        "mdnsMulticast": true,
+        "mdnsInterface": "",
+        "mdnsPort": "",
+        "mdnsIp": "",
+        "mdnsTtl": "",
+        "mdnsLoopback": true,
+        "mdnsReuseAddr": true,
+        "allowMessagePassthrough": true
+    },
+    {
+        "id": "1654f513c098f4c0",
+        "type": "mqtt-broker",
+        "name": "Mosquitto",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "Node-Red",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "5",
+        "keepalive": "60",
+        "cleansession": false,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": "300"
+    }
+]
