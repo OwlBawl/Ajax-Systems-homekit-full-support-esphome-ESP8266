@@ -28,8 +28,8 @@ MQTT version based on jb567 project with small changes and correction.
 https://community.home-assistant.io/t/ajax-alarm-system/62853/442?u=owlbawl
 
 My soldering images:
-![soldering](/soldering/1.jpeg?raw=true)
-![soldering](/soldering/2.jpeg?raw=true)
-![soldering](/soldering/3.jpeg?raw=true)
-![soldering](/soldering/4.jpeg?raw=true)
-<img src="/soldering/5.jpeg" width="128"/>
+<img src="/soldering/1.jpeg" width="400"/>
+<img src="/soldering/2.jpeg" width="400"/>
+<img src="/soldering/3.jpeg" width="400"/>
+<img src="/soldering/4.jpeg" width="400"/>
+<img src="/soldering/5.jpeg" width="400"/>
