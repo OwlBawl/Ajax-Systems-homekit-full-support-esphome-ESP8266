@@ -32,4 +32,4 @@ My soldering images:
 ![soldering](/soldering/2.jpeg?raw=true)
 ![soldering](/soldering/3.jpeg?raw=true)
 ![soldering](/soldering/4.jpeg?raw=true)
-![soldering](/soldering/5.jpeg?raw=true)
+<img src="/soldering/5.jpeg" width="128"/>
