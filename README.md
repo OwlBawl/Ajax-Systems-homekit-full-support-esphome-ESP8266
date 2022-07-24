@@ -1,4 +1,4 @@
-# ajax-spacecontrol-esphome-ESP8266  
+# ajax-spacecontrol-esphome-ESP8266 (full instruction for Node-Red + Mqtt)  
 Ajax security managed by esphome esp8266 device  
 Board used - Wemos D1 mini  
 
