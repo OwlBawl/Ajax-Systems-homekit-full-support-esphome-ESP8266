@@ -1,4 +1,4 @@
-# Ajax-SpaceControl + esphome-ESP8266 + SIA
+# Ajax SpaceControl + SIA + esphome ESP8266
 # Full instruction for Node-Red & SIA node & Mqtt available
 Ajax security managed by esphome esp8266 device  
 Board used - Wemos D1 mini  
